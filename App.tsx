@@ -14,19 +14,21 @@ import TaskScreen from './src/screen/TaskScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import rootReducer from './src/reducers/rootReducer';
+import {PersistGate} from 'redux-persist/integration/react';
+import persistStore from './src/configureStore';
 const Tab = createBottomTabNavigator();
-const store = createStore(rootReducer);
+const persist = persistStore();
 const App = () => {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Task" component={TaskScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
+    <Provider store={persist.store}>
+      <PersistGate loading={null} persistor={persist.persistor}>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Task" component={TaskScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };
