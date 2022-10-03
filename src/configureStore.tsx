@@ -1,4 +1,5 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import {persistStore, persistReducer, createTransform} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rootReducer from './reducers/rootReducer';
@@ -25,7 +26,7 @@ const myTransform = createTransform(
 //   (outboundState, _key) => outboundState,
 //   {whitelist: ['todos']},
 export default () => {
-  const store = createStore(persistedReducer);
+  const store = createStore(persistedReducer, applyMiddleware(thunk));
   const persistor = persistStore(store);
   return {store, persistor};
 };
