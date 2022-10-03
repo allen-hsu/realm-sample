@@ -1,8 +1,8 @@
 import {ADD_TODO} from './ActionTyps';
-
-export const AddTodo = (payload: string) => {
+import {TaskModel} from '../model/Task';
+export const AddTodo = (task: TaskModel) => {
   return {
     type: ADD_TODO,
-    payload,
+    task,
   };
 };

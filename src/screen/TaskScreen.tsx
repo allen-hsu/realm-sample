@@ -3,21 +3,28 @@ import {StyleSheet, View, Button, FlatList} from 'react-native';
 import Task from '../components/Task';
 import {useDispatch, useSelector} from 'react-redux';
 import {AddTodo} from '../actions/todoActions';
+import {TaskModel} from '../model/TaskModel';
 const TaskScreen = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: any) => state.todos.todos);
+  const tasks = useSelector((state: any) => state.todos.todos);
   return (
     <View style={styles.container}>
       <View style={styles.taskWrapper}>
         <FlatList
-          data={todos}
-          renderItem={({item}) => <Task text={item} />}
-          keyExtractor={(item, index) => index.toString()}
+          data={tasks}
+          keyExtractor={task => task.id.toString()}
+          renderItem={({item}) => (
+            <Task
+              description={item.description}
+              id={item.id}
+              createdAt={item.createdAt}
+            />
+          )}
         />
       </View>
       <Button
         title="Add Task"
-        onPress={() => dispatch(AddTodo('Add new todo'))}
+        onPress={() => dispatch(AddTodo(TaskModel.generate('Task ABC')))}
       />
     </View>
   );
