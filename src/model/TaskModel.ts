@@ -1,24 +1,25 @@
 import Realm from 'realm';
 
+export const TASK_SCHEMA = 'Task';
 export class TaskModel extends Realm.Object {
-  _id!: Realm.BSON.ObjectId;
+  id!: string;
   description!: string;
-  createdAt!: Date;
+  createdAt!: string;
 
   static generate(description: string) {
     return {
-      id: new Realm.BSON.ObjectId(),
+      id: new Realm.BSON.ObjectId().toHexString(),
       description,
-      createdAt: new Date(),
-    };
+      createdAt: new Date().toString(),
+    } as TaskModel;
   }
 
   static schema = {
-    name: 'Task',
+    name: TASK_SCHEMA,
     properties: {
-      _id: 'objectId',
+      id: 'string',
       description: 'string',
-      createdAt: 'date',
+      createdAt: 'string',
     },
   };
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const Task = props => {
-  console.log(props.createdAt);
+const Task = (props: {createdAt: string; description: string; id: string}) => {
+  const date = new Date(props.createdAt);
   return (
     <View style={styles.container}>
       <Text>{props.description}</Text>
-      <Text>{props.id.toString()}</Text>
+      <Text>{date.toLocaleTimeString()}</Text>
+      <Text>{props.id}</Text>
     </View>
   );
 };

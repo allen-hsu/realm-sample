@@ -16,6 +16,8 @@
     "@react-navigation/native-stack": "^6.9.0",
     "@react-navigation/stack": "^6.3.1",
     "@realm/react": "^0.3.2",
+    "@reduxjs/toolkit": "^1.8.5",
+    "@types/lodash": "^4.14.186",
     "react": "18.1.0",
     "react-native": "0.70.1",
     "react-native-gesture-handler": "^2.6.2",
@@ -24,8 +26,7 @@
     "react-redux": "^8.0.4",
     "realm": "^10.21.1",
     "redux": "^4.2.0",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -16,6 +16,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import persistStore from './src/configureStore';
+
 const Tab = createBottomTabNavigator();
 const persist = persistStore();
 const App = () => {
