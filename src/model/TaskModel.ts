@@ -22,4 +22,9 @@ export class TaskModel extends Realm.Object {
       createdAt: 'string',
     },
   };
+
+  // migrationTest: Realm.MigrationCallback = (oldRealm, newRealm) => {
+  //   if (oldRealm.schemaVersion > 1) {
+  //   }
+  // };
 }

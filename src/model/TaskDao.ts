@@ -1,11 +1,18 @@
 import {TaskModel, TASK_SCHEMA} from './TaskModel';
 import Realm from 'realm';
-import _ from 'lodash';
 
 const databaseOptions = {
   schema: [TaskModel.schema],
-  schemaVersion: 0,
+  schemaVersion: 1,
+  migration: (oldRealm: Realm, newRealm: Realm) => {
+    if (oldRealm.schemaVersion === 1 && newRealm.schemaVersion === 2) {
+      MIGRATION_1_2(oldRealm, newRealm);
+    }
+  },
 };
+
+const MIGRATION_1_2: Realm.MigrationCallback = (oldRealm, newRealm) => {};
+
 export const insertTask = async (task: TaskModel) => {
   try {
     await Realm.open(databaseOptions).then(realm => {
