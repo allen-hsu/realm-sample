@@ -2,16 +2,21 @@ import {TaskModel, TASK_SCHEMA} from './TaskModel';
 import Realm from 'realm';
 
 const databaseOptions = {
-  schema: [TaskModel.schema],
+  schema: [TaskModel.schemaV1],
   schemaVersion: 1,
   migration: (oldRealm: Realm, newRealm: Realm) => {
-    if (oldRealm.schemaVersion === 1 && newRealm.schemaVersion === 2) {
-      MIGRATION_1_2(oldRealm, newRealm);
+    if (newRealm.schemaVersion > oldRealm.schemaVersion) {
+      switch (oldRealm.schemaVersion) {
+        case 1: {
+          MIGRATION_1(oldRealm, newRealm);
+          break;
+        }
+      }
     }
   },
 };
 
-const MIGRATION_1_2: Realm.MigrationCallback = (oldRealm, newRealm) => {};
+const MIGRATION_1: Realm.MigrationCallback = (oldRealm, newRealm) => {};
 
 export const insertTask = async (task: TaskModel) => {
   try {

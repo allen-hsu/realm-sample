@@ -6,7 +6,7 @@ import {AppThunk} from '../configureStore';
 export const AddTask =
   (task: TaskModel): AppThunk =>
   async dispatch => {
-    await insertTask(task);
+    // await insertTask(task);
     dispatch({
       type: ADD_TASK,
       payload: task,

@@ -15,16 +15,12 @@ import rootReducer from './reducers/rootReducer';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  // whitelist: ['tasks'],
   //   transforms: [myTransform],
-  blacklist: ['tasks'],
+  // blacklist: ['tasks'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// const myTransform = createTransform(
-//   (state: any, key) => state,
-//   state => state,
-// );
 
 const store = configureStore({
   reducer: persistedReducer,

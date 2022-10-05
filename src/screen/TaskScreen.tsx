@@ -7,9 +7,9 @@ import {TaskModel} from '../model/TaskModel';
 const TaskScreen = () => {
   const dispatch = useAppDispatch();
   const tasks: TaskModel[] = useAppSelector((state: any) => state.tasks.tasks);
-  useEffect(() => {
-    dispatch(QueryTasks());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(QueryTasks());
+  // }, [dispatch]);
   return (
     <View style={styles.container}>
       <View style={styles.taskWrapper}>
