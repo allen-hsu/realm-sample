@@ -17,7 +17,7 @@ const persistConfig = {
   storage: AsyncStorage,
   // whitelist: ['tasks'],
   //   transforms: [myTransform],
-  // blacklist: ['tasks'],
+  blacklist: ['tasks'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

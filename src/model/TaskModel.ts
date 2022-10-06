@@ -14,8 +14,9 @@ export class TaskModel extends Realm.Object {
     } as TaskModel;
   }
 
-  static schemaV1 = {
+  static schema = {
     name: TASK_SCHEMA,
+    primaryKey: 'id',
     properties: {
       id: 'string',
       description: 'string',

@@ -4,12 +4,17 @@ import Task from '../components/Task';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {AddTask, QueryTasks} from '../actions/taskActions';
 import {TaskModel} from '../model/TaskModel';
-const TaskScreen = () => {
+const TaskScreen = ({navigation}) => {
   const dispatch = useAppDispatch();
   const tasks: TaskModel[] = useAppSelector((state: any) => state.tasks.tasks);
-  // useEffect(() => {
-  //   dispatch(QueryTasks());
-  // }, [dispatch]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log('TaskScreen');
+      dispatch(QueryTasks());
+    });
+
+    return unsubscribe;
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <View style={styles.taskWrapper}>

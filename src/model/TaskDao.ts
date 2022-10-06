@@ -1,9 +1,10 @@
 import {TaskModel, TASK_SCHEMA} from './TaskModel';
-import Realm from 'realm';
 
-const databaseOptions = {
-  schema: [TaskModel.schemaV1],
-  schemaVersion: 1,
+import {Realm, createRealmContext} from '@realm/react';
+
+const databaseOptions: Realm.Configuration = {
+  schema: [TaskModel],
+  schemaVersion: 2,
   migration: (oldRealm: Realm, newRealm: Realm) => {
     if (newRealm.schemaVersion > oldRealm.schemaVersion) {
       switch (oldRealm.schemaVersion) {
@@ -24,7 +25,7 @@ export const insertTask = async (task: TaskModel) => {
       realm.write(() => {
         realm.create(TASK_SCHEMA, task);
       });
-      realm.close();
+      // realm.close();
     });
   } catch (e) {
     console.log(e);
@@ -36,7 +37,7 @@ export const queryAllTasks = async () => {
     const res = await Realm.open(databaseOptions).then(realm => {
       const results = realm.objects(TASK_SCHEMA);
       const tasks = JSON.parse(JSON.stringify(results));
-      realm.close();
+      // realm.close();
       return tasks;
     });
     return res;
@@ -44,3 +45,5 @@ export const queryAllTasks = async () => {
     console.log(e);
   }
 };
+
+export default createRealmContext(databaseOptions);

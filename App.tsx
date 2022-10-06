@@ -11,6 +11,7 @@
 import React, {useState, useEffect} from 'react';
 import HomeScreen from './src/screen/HomeScreen';
 import TaskScreen from './src/screen/TaskScreen';
+import TaskHooksScreen from './src/screen/TaskHookScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
@@ -32,7 +33,7 @@ const App = () => {
       }
     };
     _retrieveData().then(string => {
-      console.log(string);
+      // console.log(string);
       setIsReady(true);
     });
   }, []);
@@ -47,6 +48,7 @@ const App = () => {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Task" component={TaskScreen} />
+            <Tab.Screen name="TaskHooks" component={TaskHooksScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </PersistGate>
